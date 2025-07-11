@@ -53,9 +53,9 @@ return {
     -- customize how language servers are attached
     handlers = {
       -- this is for disabling lsps that conflict with pyright
-      pylsp = false,
-      basedpyright = false,
-      jedi_language_server = false,
+      -- pylsp = false,
+      -- basedpyright = false,
+      -- jedi_language_server = false,
       -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server
       -- function(server, opts) require("lspconfig")[server].setup(opts) end
 
@@ -134,7 +134,7 @@ return {
           function()
             vim.diagnostic.open_float(nil, { focus = false })
           end,
-          desc = "Show diagnostics in floating window",
+          desc = "Show error in floating window",
         },
       },
     },
