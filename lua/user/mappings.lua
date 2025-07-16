@@ -1,3 +1,5 @@
+local utils = require("user.utils")  -- here the logic for opening terminal and running current file lives
+
 return {
   -- Terminal mode mappings
   t = {
@@ -13,5 +15,9 @@ return {
       vim.cmd("bd!")
     end,
   },
-}
 
+  -- Normal mode mappings
+  n = {
+    ["<leader>tr"] = { utils.run_file, "Run current file in terminal" },
+  },
+}
