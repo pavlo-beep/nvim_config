@@ -1,38 +1,22 @@
 local M = {}
 
-local Terminal = require("toggleterm.terminal").Terminal
-local run_term = nil
-
 function M.run_file()
-  if not run_term then
-    run_term = Terminal:new({
-      direction = "horizontal",
-      close_on_exit = false,
-      hidden = true,
-      on_open = function(term)
-        vim.cmd("startinsert!")
-      end,
-    })
-  end
+  local file = vim.fn.expand "%:p" -- full path to current file
 
-  local file = vim.fn.expand("%:p")
-  local ft = vim.bo.filetype
-  local cmd = ""
-
-  if ft == "python" then
-    cmd = "python3 " .. file
-  elseif ft == "lua" then
-    cmd = "lua " .. file
-  elseif ft == "javascript" then
-    cmd = "node " .. file
-  else
-    print("Unsupported filetype: " .. ft)
+  if vim.fn.empty(file) == 1 then
+    vim.notify("No file to run", vim.log.levels.ERROR)
     return
   end
 
-  vim.cmd("w")
-  run_term:toggle()
-  run_term:send(cmd .. "\n")
+  -- Open horizontal terminal split
+  vim.cmd "belowright split | terminal"
+
+  -- Enter insert mode and send python3 command after a small delay
+  vim.cmd "startinsert"
+  vim.defer_fn(function()
+    local cmd = "python3 '" .. file .. "'\n"
+    vim.fn.chansend(vim.b.terminal_job_id, cmd)
+  end, 100)
 end
 
 return M

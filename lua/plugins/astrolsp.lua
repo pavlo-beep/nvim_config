@@ -1,5 +1,3 @@
-
-
 -- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
 -- Configuration documentation can be found with `:h astrolsp`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
@@ -43,7 +41,7 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      "pyright"
+      "pyright",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -89,8 +87,8 @@ return {
     -- Start with virtual_text showing only errors
     diagnostics = {
       virtual_text = { severity = vim.diagnostic.severity.ERROR },
-      underline = true,   -- keep underlines for all severities
-      signs = true,       -- keep gutter signs for all severities
+      underline = true, -- keep underlines for all severities
+      signs = true, -- keep gutter signs for all severities
       float = {
         wrap = true,
         max_width = 80,
@@ -118,22 +116,19 @@ return {
         ["<Leader>tw"] = {
           function()
             show_warning_virtual_text = not show_warning_virtual_text
-            vim.diagnostic.config({
-              virtual_text = show_warning_virtual_text
-                and { severity = vim.diagnostic.severity.WARN }
+            vim.diagnostic.config {
+              virtual_text = show_warning_virtual_text and { severity = vim.diagnostic.severity.WARN }
                 or { severity = vim.diagnostic.severity.ERROR },
               -- toggle underline globally here
-              underline = show_warning_virtual_text,  -- underline on if warnings are on, off otherwise
+              underline = show_warning_virtual_text, -- underline on if warnings are on, off otherwise
               signs = true,
-            })
+            }
             print("LSP Warning Virtual Text and Underline: " .. (show_warning_virtual_text and "ON" or "OFF"))
           end,
           desc = "Toggle yellow warning virtual text and underline",
         },
         ["<Leader>te"] = {
-          function()
-            vim.diagnostic.open_float(nil, { focus = false })
-          end,
+          function() vim.diagnostic.open_float(nil, { focus = false }) end,
           desc = "Show error in floating window",
         },
       },
@@ -147,4 +142,3 @@ return {
     end,
   },
 }
-
