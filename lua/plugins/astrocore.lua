@@ -65,17 +65,7 @@ return {
           desc = "Run current file in terminal",
         },
 
-        -- Toggle signature help
-        ["<Leader>sh"] = {
-          function() require("user.utils").toggle_signature() end,
-          desc = "Toggle Signature Help",
-        },
-
-        ["<Leader>sk"] = {
-          function() vim.lsp.buf.signature_help() end,
-          desc = "Show Signature Help",
-        },
-
+        -- navigate buffer tabs
         ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 

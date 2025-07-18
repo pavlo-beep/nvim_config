@@ -1,4 +1,4 @@
-local utils = require "user.utils" -- Business logic for <leader> custom shortcuts
+local utils = require "user.utils" -- Logic for opening terminal and running current file
 
 return {
   -- Terminal mode mappings
@@ -14,21 +14,9 @@ return {
 
   -- Normal mode mappings
   n = {
-    -- Run current file in a new terminal
     ["<Leader>tr"] = {
       function() utils.run_file() end,
       desc = "Run current file in horizontal terminal",
-    },
-
-    -- Toggle signature help
-    ["<Leader>sh"] = {
-      function() utils.toggle_signature() end,
-      desc = "Toggle Signature Help",
-    },
-
-    ["<Leader>sk"] = {
-      function() vim.lsp.buf.signature_help() end,
-      desc = "Show Signature Help",
     },
   },
 }
