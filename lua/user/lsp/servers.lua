@@ -1,5 +1,4 @@
 return {
   pyright = { enabled = true },
-  ts_ls = { enabled = true },
+  lua_ls = { enabled = true },
 }
-
