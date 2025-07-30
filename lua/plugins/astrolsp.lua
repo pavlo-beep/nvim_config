@@ -47,7 +47,18 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      pyright = {
+        settings = {
+          python = {
+            analysis = {
+              diagnosticMode = "openFilesOnly", -- Disable diagnostics from pyright
+              typeCheckingMode = "off", -- Disable type checking in pyright
+              autoSearchPaths = true, -- Optional: keep this on for better autocomplete path resolution
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
@@ -138,8 +149,10 @@ return {
     -- A custom `on_attach` function to be run after the default `on_attach` function
     -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
     on_attach = function(client, bufnr)
-      -- this would disable semanticTokensProvider for all clients
-      -- client.server_capabilities.semanticTokensProvider = nil
+      if client.name == "pyright" then
+        -- Disable diagnostics published by pyright
+        client.handlers["textDocument/publishDiagnostics"] = function() end
+      end
     end,
   },
 }

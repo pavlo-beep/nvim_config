@@ -10,6 +10,16 @@ return {
 
       -- codespell for spell checking
       null_ls.builtins.diagnostics.codespell,
+
+      -- mypy for static type checking
+      null_ls.builtins.diagnostics.mypy.with {
+        extra_args = { "--ignore-missing-imports" },
+      },
+
+      -- pylint for linting
+      null_ls.builtins.diagnostics.pylint.with {
+        extra_args = { "--disable=missing-docstring" }, -- optional customization
+      },
     })
   end,
 }
