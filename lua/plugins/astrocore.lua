@@ -86,6 +86,13 @@ return {
           desc = "Git status",
         },
         ["<Leader>gn"] = { desc = "Neogit" },
+        ["<Leader>s"] = { desc = "Search" },
+        ["<Leader>sl"] = { desc = "LSP" },
+
+        ["<Leader>Q"] = false,
+        ["<Leader>w"] = false,
+        ["<Leader>R"] = false,
+        ["<Leader>S"] = false,
         ["<Leader>n"] = {
           function() vim.cmd "Neogit" end,
           desc = "Neogit",
