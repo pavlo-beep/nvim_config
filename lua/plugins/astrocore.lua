@@ -85,7 +85,7 @@ return {
           function() require("telescope.builtin").git_status() end,
           desc = "Git status",
         },
-        ["<Leader>gn"] = false,
+        ["<Leader>gn"] = { desc = "Neogit" },
         ["<Leader>n"] = {
           function() vim.cmd "Neogit" end,
           desc = "Neogit",
