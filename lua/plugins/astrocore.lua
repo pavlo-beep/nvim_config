@@ -92,5 +92,22 @@ return {
         },
       },
     },
+    autocmds = {
+      terminal_edit_command = {
+        {
+          event = "TermOpen",
+          desc = "Bind <Leader>te in terminal buffers to edit shell command in $EDITOR",
+          callback = function(args)
+            vim.keymap.set("n", "<Leader>te", function()
+              vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes("i<C-x><C-e>", true, false, true),
+                "n",
+                false
+              )
+            end, { buffer = args.buf, desc = "Edit shell command in $EDITOR" })
+          end,
+        },
+      },
+    },
   },
 }
