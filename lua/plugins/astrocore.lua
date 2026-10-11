@@ -93,6 +93,15 @@ return {
         ["<Leader>w"] = false,
         ["<Leader>R"] = false,
         ["<Leader>S"] = false,
+
+        ["<A-j>"] = {
+          function() require("gitsigns").nav_hunk "next" end,
+          desc = "Next git hunk",
+        },
+        ["<A-k>"] = {
+          function() require("gitsigns").nav_hunk "prev" end,
+          desc = "Previous git hunk",
+        },
         ["<Leader>n"] = {
           function() vim.cmd "Neogit" end,
           desc = "Neogit",
