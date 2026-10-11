@@ -78,6 +78,8 @@ return {
           end,
           desc = "Close buffer from tabline",
         },
+
+        ["<Leader>gT"] = false,
       },
     },
   },
