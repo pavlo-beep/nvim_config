@@ -80,6 +80,11 @@ return {
         },
 
         ["<Leader>gT"] = false,
+        ["<Leader>gt"] = false,
+        ["<Leader>gs"] = {
+          function() require("telescope.builtin").git_status() end,
+          desc = "Git status",
+        },
       },
     },
   },
